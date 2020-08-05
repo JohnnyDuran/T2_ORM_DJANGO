@@ -8,7 +8,7 @@ Usuario: johnny
 Contraseña: johnny
 
 *********************************************************************
-Insercion de codigos query en el ORM de Django
+#Insercion de codigos query en el ORM de Django
 (InteractiveConsole)
 >>> from apporm.models import Producto,Cliente,Factura,DetalleFactura 
 >>> prod = Producto.objects.all() 
@@ -31,8 +31,8 @@ Insercion de codigos query en el ORM de Django
 >>> prod.save()
 >>> Producto.objects.create(descripcion='Cerelac',precio=1.90,stock=1100)        
 <Producto: Cerelac>
-#Inserte dos registros de clientes, 2 registros en el modelo factura con sus dos registros en el modelo detalle Factura con el ejemplo 1 y 2 respectivamente
 
+#Inserte dos registros de clientes, 2 registros en el modelo factura con sus dos registros en el modelo detalle Factura con el ejemplo 1 y 2 respectivamente
 #Dos Registros de clientes
 
 >>> prod= Producto.objects.get(descripcion='Mostaza')   
@@ -50,8 +50,8 @@ Insercion de codigos query en el ORM de Django
 >>> cli=Cliente.objects.all().values('id','nombre','producto')
 >>> cli
 <QuerySet [{'id': 1, 'nombre': 'Johnny Duran', 'producto': 1}, {'id': 2, 'nombre': 'Maria Duran', 'producto': 4}, {'id': 3, 'nombre': 'Alexandra Castillo', 'producto': 4}]>
-#Insertar 2 registro en el modelo factura
 
+#Insertar 2 registro en el modelo factura
 >>> cli= Cliente.objects.get(nombre='Maria Duran')
 >>> cli
 <Cliente: Maria Duran>
@@ -68,8 +68,8 @@ Insercion de codigos query en el ORM de Django
 >>> fac= Factura.objects.all().values('id','cliente__nombre')
 >>> fac
 <QuerySet [{'id': 2, 'cliente__nombre': 'Johnny Duran'}, {'id': 3, 'cliente__nombre': 'Maria Duran'}, {'id': 4, 'cliente__nombre': 'Maria Duran'}]>
-#Insertar 2 registros en el detalle de factura
 
+#Insertar 2 registros en el detalle de factura
 >>> fac= Factura.objects.get(cliente__nombre='Johnny Duran')
 >>> fac
 <Factura: Johnny Duran>
@@ -91,8 +91,8 @@ datetime.date(2020, 8, 4)
 >>> det
 <QuerySet [{'factura__id': 2, 'factura__cliente__nombre': 'Johnny Duran', 'producto__descripcion': 'Leche la Vaquita', 'cantidad': 10.0, 'precio': 1.25}, {'factura__id': 2, 'factura__cliente__nombre': 'Johnny Duran', 'producto__descripcion': 'Cerelac', 'cantidad': 20.0, 'precio': 1.9}, {'factura__id': 2, 
 'factura__cliente__nombre': 'Johnny Duran', 'producto__descripcion': 'Atun Real', 'cantidad': 2.0, 'precio': 1.25}]>
-#Actualizar registros en los modelos
 
+#Actualizar registros en los modelos
 >>> prod= Producto.objects.get(descripcion='Tomate')
 >>> prod.precio
 0.2
@@ -104,10 +104,9 @@ datetime.date(2020, 8, 4)
 0.5
 >>> Producto.objects.filter(descripcion='Tomate').update(precio=0.35)
 1
+
 #Modificar 2 registros de producto, cliente, factura y detalleFactura con el ejemplo 1 y 2 respectivamente
-
-#Modificar 2 registro de producto***
-
+#Modificar 2 registro de producto
 >>> prod= Producto.objects.get(id=6) 
 >>> prod.descripcion
 'Yogurt'
@@ -121,8 +120,8 @@ datetime.date(2020, 8, 4)
 1.5
 >>> Producto.objects.filter(descripcion='Yogurt').update(precio=1.60)
 1
-#Modificar 2 registros de cliente
 
+#Modificar 2 registros de cliente
 >>> cli= Cliente.objects.get(id=3)
 >>> cli.nombre
 'Alexandra Castillo'
@@ -136,8 +135,8 @@ datetime.date(2020, 8, 4)
 'Yaguachi'
 >>> Cliente.objects.filter(nombre='Alexandra Castillo').update(direccion= 'Samborondon')
 1
-#Modificar 2 registros de factura
 
+#Modificar 2 registros de factura
 >>> cli=Cliente.objects.get(id=3)
 >>> cli.nombre
 'Alexandra Castillo'
@@ -157,8 +156,8 @@ fac= Factura.objects.get(cliente=cli)
 >>> Factura.objects.all().values('id','cliente__nombre','fecha')
 <QuerySet [{'id': 2, 'cliente__nombre': 'Johnny Duran', 'fecha': datetime.date(2020, 8, 4)}, {'id': 3, 'cliente__nombre': 'Alexandra Castillo', 'fecha': 
 datetime.date(2020, 8, 4)}, {'id': 4, 'cliente__nombre': 'Alexandra Castillo', 'fecha': datetime.date(2020, 8, 4)}]>
-#Modificar 2 registro de DetalleFactura
 
+#Modificar 2 registro de DetalleFactura
 >>> det =DetalleFactura.objects.all().values('factura__id','factura__cliente__nombre','producto__descripcion','cantidad','precio') 
 >>> det
 <QuerySet [{'factura__id': 2, 'factura__cliente__nombre': 'Johnny Duran', 'producto__descripcion': 'Leche la Vaquita', 'cantidad': 10.0, 'precio': 1.25}, {'factura__id': 2, 'factura__cliente__nombre': 'Johnny Duran', 'producto__descripcion': 'Cerelac', 'cantidad': 20.0, 'precio': 1.9}, {'factura__id': 2, 
@@ -181,8 +180,8 @@ datetime.date(2020, 8, 4)}, {'id': 4, 'cliente__nombre': 'Alexandra Castillo', '
 <QuerySet [{'factura__id': 2, 'factura__cliente__nombre': 'Johnny Duran', 'producto__descripcion': 'Leche la Vaquita', 'cantidad': 10.0, 'precio': 1.25}, {'factura__id': 2, 'factura__cliente__nombre': 'Johnny Duran', 'producto__descripcion': 'Cerelac', 'cantidad': 20.0, 'precio': 1.9}, {'factura__id': 2, 
 'factura__cliente__nombre': 'Johnny Duran', 'producto__descripcion': 'Atun Real', 'cantidad': 2.0, 'precio': 1.25}, {'factura__id': 6, 'factura__cliente__nombre': 'Franco Peralta', 'producto__descripcion': 'Cerelac', 'cantidad': 5.0, 'precio': 0.35}, {'factura__id': 5, 'factura__cliente__nombre': 'Marcos 
 Rendon', 'producto__descripcion': 'Mostaza', 'cantidad': 2.0, 'precio': 35.0}]>
-#Eliminar registros en los modelos
 
+#Eliminar registros en los modelos
 >>> prod = Producto.objects.get(id=7) 
 >>> prod.descripcion
 'Queso'
@@ -190,8 +189,8 @@ Rendon', 'producto__descripcion': 'Mostaza', 'cantidad': 2.0, 'precio': 35.0}]>
 (1, {'apporm.Producto': 1})
 >>> Producto.objects.filter(descripcion='pimiento').delete() 
 (1, {'apporm.Producto': 1})
-#Querys en un modelo
 
+#Querys en un modelo
 >>> prod=Producto.objects.all() 
 >>> prod
 <QuerySet [<Producto: cebolla>, <Producto: Cerelac>, <Producto: Yogurt>, <Producto: Tomate>, <Producto: Mostaza>, <Producto: Leche la Vaquita>, <Producto: Atun Real>, <Producto: Quintal de Arroz>]>
@@ -210,8 +209,8 @@ Rendon', 'producto__descripcion': 'Mostaza', 'cantidad': 2.0, 'precio': 35.0}]>
 <QuerySet [{'id': 1, 'descripcion': 'Quintal de Arroz'}]>
 >>> Producto.objects.filter(descripcion='cebolla').values('id','descripcion')                                                                            
 <QuerySet [{'id': 9, 'descripcion': 'cebolla'}]>
-#Querys de varios modelos (relacionados)
 
+#Querys de varios modelos (relacionados)
 >>> Factura.objects.filter(cliente__nombre='Franco Peralta')
 <QuerySet [<Factura: Franco Peralta>]>
 >>> cli.factura_set.all()
