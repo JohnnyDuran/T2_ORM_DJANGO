@@ -2,13 +2,19 @@
 #Realización de operaciones con modelos usando el ORM DE DJANGO
 #Proyecto creado en Entorno Virtualcon DJANGO 3.0
 #Creado por: Johnny Duran C.
+
 *********************************************************************
 Para acceder al /admin con superusuario:
 Usuario: johnny
 Contraseña: johnny
-
 *********************************************************************
+
+#Ejercicios de practica
 #Insercion de codigos query en el ORM de Django
+//Para ejecutar la consola ORM de Django
+# 1.Abre la consola local :
+#   1.1 entra al archivo => cd (nombre del proyecto)
+#   1.2 pon => python manage.py shell
 (InteractiveConsole)
 >>> from apporm.models import Producto,Cliente,Factura,DetalleFactura 
 >>> prod = Producto.objects.all() 
